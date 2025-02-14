@@ -1,61 +1,151 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { X, Download } from "lucide-react";
 
-const HomePage = () => {
+const researchPapers = [
+  { 
+    id: 1, 
+    title: "AI in Healthcare: Transforming Patient Care through Machine Learning",
+    author: "John Doe",
+    year: 2023,
+    journal: "Nature Digital Medicine",
+    abstract: "This paper explores the revolutionary impact of artificial intelligence on healthcare delivery, focusing on early disease detection and personalized treatment plans.",
+    file: "/papers/predicting-bankruptcy.pdf",
+    tags: ["AI", "Healthcare", "Machine Learning"]
+  },
+  { 
+    id: 2, 
+    title: "Quantum Computing Advances: Breaking Computational Barriers",
+    author: "Alice Smith",
+    year: 2022,
+    journal: "Quantum Science and Technology",
+    abstract: "A comprehensive examination of recent breakthroughs in quantum computing, detailing new approaches to qubit stability and error correction.",
+    file: "papers/predicting-bankruptcy.pdf",
+    tags: ["Quantum Computing", "Physics", "Computer Science"]
+  },
+  { 
+    id: 3, 
+    title: "Blockchain Security: Advanced Cryptographic Protocols",
+    author: "Bob Johnson",
+    year: 2021,
+    journal: "IEEE Security & Privacy",
+    abstract: "An in-depth analysis of emerging cryptographic protocols in blockchain technology, focusing on enhanced security measures and scalability solutions.",
+    file: "papers/predicting-bankruptcy.pdf",
+    tags: ["Blockchain", "Cryptography", "Security"]
+  },
+];
+
+export default function ResearchPaperViewer() {
+  const [selectedPaper, setSelectedPaper] = useState(null);
+
+  const handleClosePDF = () => {
+    setSelectedPaper(null);
+  };
+
   return (
-    <div className="fixed inset-0 top-16 bg-gradient-to-b from-white to-rose-50 overflow-hidden" style={{ zoom: '150%' }}>
-      <main className="h-full w-full flex items-center justify-center px-4">
-        <div className="max-w-4xl w-full">
-          {/* Profile Section */}
-          <div className="text-center mt-8 sm:mt-0 mb-6 sm:mb-8">
-            {/* Headshot - smaller on mobile, larger on desktop */}
-            <div className="mb-4 sm:mb-6">
-              <div className="rounded-full overflow-hidden border-4 border-rose-100 shadow-lg w-32 h-32 sm:w-40 sm:h-40 mx-auto">
-                <img
-                  src="/api/placeholder/400/400"
-                  alt="Dr. Kristina Lalova"
-                  className="w-full h-full object-cover"
-                />
+    <div className="h-[calc(100vh-4rem)] mt-16 bg-gradient-to-b from-white to-rose-50">
+      <div className={`h-full flex gap-6 p-6 transition-all duration-300 ease-in-out ${
+        selectedPaper ? '' : 'max-w-5xl mx-auto'
+      }`}>
+        {/* Paper List */}
+        <div className={`flex flex-col transition-all duration-300 ease-in-out ${
+          selectedPaper ? 'w-1/3' : 'w-full'
+        }`}>
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Research Papers</h1>
+            <p className="text-rose-700 font-light">Select a paper to view its contents</p>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto space-y-6 pr-2">
+            {researchPapers.map((paper) => (
+              <div
+                key={paper.id}
+                className={`bg-white rounded-lg shadow-sm transition-all duration-200 ${
+                  selectedPaper?.id === paper.id
+                    ? 'border border-rose-200 bg-rose-50/50'
+                    : 'border border-gray-200 hover:border-rose-200 hover:shadow'
+                }`}
+              >
+                <div className="p-6">
+                  <div className="space-y-4">
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900 leading-tight">
+                        {paper.title}
+                      </h2>
+                      <div className="mt-2 flex items-center gap-3 text-sm text-gray-600">
+                        <span>{paper.author}</span>
+                        <span>•</span>
+                        <span>{paper.journal}</span>
+                        <span>•</span>
+                        <span>{paper.year}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 leading-relaxed">
+                      {paper.abstract}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {paper.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-rose-50 text-rose-700 rounded-full text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedPaper(paper)}
+                      className="w-full px-4 py-2.5 bg-rose-700 text-white rounded-lg hover:bg-rose-800 transition-colors shadow-sm hover:shadow-md"
+                    >
+                      View Paper
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Name and Title - adjusted font sizes for mobile */}
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
-              Dr. Kristina Lalova
-            </h1>
-            <h2 className="text-lg sm:text-xl text-rose-700 mb-4 sm:mb-6 font-light">
-              Financial Economics Researcher
-            </h2>
-          </div>
-
-          {/* Introduction - adjusted text size and margins for mobile */}
-          <div className="max-w-2xl mx-auto text-center mb-6 sm:mb-8 px-2 sm:px-4">
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              Welcome to my academic portfolio. I am a Finance PhD specializing in behavioral economics 
-              and market microstructure. My research focuses on understanding how psychological factors 
-              and market design influence financial decision-making and market efficiency.
-            </p>
-          </div>
-
-          {/* Call to Action Buttons - stacked on mobile, side by side on desktop */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 px-4">
-            <Link
-              to="/research"
-              className="inline-flex items-center justify-center bg-rose-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg hover:bg-rose-800 transition-colors shadow-sm hover:shadow-md text-sm sm:text-base"
-            >
-              View Research Papers
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center border-2 border-rose-700 text-rose-700 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg hover:bg-rose-50 transition-colors text-sm sm:text-base"
-            >
-              Get in Touch
-            </Link>
+            ))}
           </div>
         </div>
-      </main>
+
+        {/* PDF Viewer */}
+        {selectedPaper && (
+          <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">{selectedPaper.title}</h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  {selectedPaper.author} • {selectedPaper.journal} • {selectedPaper.year}
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href={selectedPaper.file}
+                  download
+                  className="flex items-center gap-2 px-4 py-2 bg-rose-700 text-white rounded-lg hover:bg-rose-800 transition-colors shadow-sm hover:shadow-md"
+                >
+                  <Download size={18} />
+                  Download PDF
+                </a>
+                <button
+                  onClick={handleClosePDF}
+                  className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex-1">
+              <iframe
+                src={selectedPaper.file}
+                className="w-full h-full"
+                title={selectedPaper.title}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
-};
-
-export default HomePage;
+}

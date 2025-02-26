@@ -29,7 +29,7 @@ const researchPapers = [
       author: "Professor Kristina Lalova",
       year: 2024,
       journal: "IEEE Security & Privacy",
-      abstract: "An in-depth analysis of emerging cryptographic protocols in blockchain technology, focusing on enhanced security measures and scalability solutions.",
+      abstract: "The paper finds that while private equity (PE) investments in European football clubs enhance financial outcomes – boosting commercial revenues, sponsorships, and player salaries – these gains come at the expense of on-field performance, particularly in away matches and for female teams, due to disruptions in team dynamics, squad turnover, and declining player interconnectedness.",
       file: "/papers/ScoringProfits.pdf",
       tags: ["Private Equity", "Sports Finance", "Soccer Clubs", "Investment Impact"]
     },

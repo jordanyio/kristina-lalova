@@ -12,7 +12,7 @@ const Footer = () => {
           </div>
           <div className="flex gap-8">
             <a href="mailto:lalovakr@msu.edu" className="text-rose-700 hover:text-rose-800 transition-colors">Email</a>
-            <a href="#" className="text-rose-700 hover:text-rose-800 transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/kristinalalova/" className="text-rose-700 hover:text-rose-800 transition-colors">LinkedIn</a>
             <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3050436" className="text-rose-700 hover:text-rose-800 transition-colors">SSRN</a>
           </div>
         </div>

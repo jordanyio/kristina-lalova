@@ -23,7 +23,7 @@ const MediaMentions = ({ isLoaded }) => {
 
   return (
     <div className="bg-gradient-to-b from-rose-50/90 to-white/90rose-50/90">
-        <section className="w-full max-w-7xl mx-auto px-4 py-16 ">
+        <section className="w-full max-w-7xl mx-auto px-4 pt-16 pb-4"> 
       <motion.div
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}

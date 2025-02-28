@@ -15,7 +15,7 @@ const SocialLinks = ({ isLoaded }) => {
             <span className="mt-2 text-gray-700 group-hover:text-rose-700 transition-colors">Email</span>
           </a>
           
-          <a href="#" className="flex flex-col items-center group">
+          <a href="https://www.linkedin.com/in/kristinalalova/" className="flex flex-col items-center group">
             <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center group-hover:bg-rose-100 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-rose-700">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />

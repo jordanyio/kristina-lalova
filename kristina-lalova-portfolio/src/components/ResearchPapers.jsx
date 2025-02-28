@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Download, X } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
+import PDFViewer from './PDFViewer';
 
 // Research paper data stays the same
 const researchPapers = [
@@ -43,7 +44,7 @@ const researchPapers = [
       file: "/papers/UntanglingEmployeeMorale.pdf",
       tags: ["Private Equity", "Employee Morale", "Corporate Restructuring", "Workplace Culture"]
     }
-  ];
+];
   
 
 const ResearchPapers = ({ isLoaded, isMobile }) => {
@@ -67,7 +68,7 @@ const ResearchPapers = ({ isLoaded, isMobile }) => {
   };
 
   return (
-    <section className="py-16 relative z-10">
+    <section id="research-papers" className="py-16 relative z-10">
       {/* Semi-transparent gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-rose-50/90" />
       
@@ -104,7 +105,14 @@ const DesktopLayout = ({ selectedPaper, setSelectedPaper, handleClosePDF }) => {
     <div className="h-screen flex gap-8">
       <PaperList selectedPaper={selectedPaper} setSelectedPaper={setSelectedPaper} />
       {selectedPaper && (
-        <PDFViewer paper={selectedPaper} handleClosePDF={handleClosePDF} />
+        <PDFViewer 
+          pdfPath={selectedPaper.file}
+          title={selectedPaper.title}
+          author={selectedPaper.author}
+          journal={selectedPaper.journal}
+          year={selectedPaper.year}
+          onClose={handleClosePDF}
+        />
       )}
     </div>
   );
@@ -128,8 +136,6 @@ const PaperList = ({ selectedPaper, setSelectedPaper }) => {
     </div>
   );
 };
-
-  
 
 const TabletMobileLayout = () => {
   return (
@@ -166,8 +172,6 @@ const PaperCard = ({ paper, isSelected, onSelect, isTabletOrMobile }) => {
             </h2>
             <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-gray-600">
               <span>{paper.author}</span>
-              {/* <span>•</span> */}
-              {/* <span>{paper.journal}</span> */}
               <span>•</span>
               <span>{paper.year}</span>
             </div>
@@ -208,64 +212,6 @@ const PaperCard = ({ paper, isSelected, onSelect, isTabletOrMobile }) => {
             </div>
           )}
         </div>
-      </div>
-    </div>
-  );
-};
-
-const PDFViewer = ({ paper, handleClosePDF }) => {
-  return (
-    <div className="flex-1 flex flex-col bg-white/70 backdrop-blur rounded-lg shadow-xl border border-gray-200 overflow-hidden pdf-container transform transition-all duration-500 ease-in-out animate-fadeIn relative z-20">
-      <style jsx="true">{`
-        @keyframes fadeIn {
-          from { 
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to { 
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-      <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-rose-50/70 backdrop-blur">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900">{paper.title}</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            {paper.author} • {paper.journal} • {paper.year}
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              const link = document.createElement('a');
-              link.href = paper.file;
-              link.download = `${paper.title.replace(/\s+/g, '_')}.pdf`;
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            }}
-            className="flex items-center gap-2 px-4 py-2 bg-rose-700 text-white rounded-lg hover:bg-rose-800 transition-colors shadow-lg hover:shadow-xl"
-          >
-            <Download size={18} />
-            Download PDF
-          </button>
-          <button
-            onClick={handleClosePDF}
-            className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100/80 transition-colors"
-          >
-            <X size={20} />
-          </button>
-        </div>
-      </div>
-      
-      <div className="flex-1 h-[calc(100vh-14rem)]">
-        <iframe
-          src={paper.file}
-          className="w-full h-full bg-white"
-          title={paper.title}
-        />
       </div>
     </div>
   );

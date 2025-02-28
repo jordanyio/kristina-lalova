@@ -61,68 +61,98 @@ const TeachingExperience = ({ isLoaded }) => {
   ];
 
   const containerAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } },
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.6, 
+        staggerChildren: 0.2 
+      } 
+    },
   };
 
   const itemAnimation = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    },
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 py-16 relative bg-rose-50 rounded-lg mb-4">
-      <motion.div
-        initial="hidden"
-        animate={hasMounted ? "visible" : "hidden"}
-        variants={containerAnimation}
-        className="px-6 py-8 relative z-10"
-      >
-        {/* Heading */}
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Teaching Experience</h2>
+    <section className="py-16 relative z-10">
+      {/* Semi-transparent gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-rose-50/90" />
+      
+      <div className="relative z-20 max-w-7xl mx-auto px-6">
+        <div className="mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Teaching Experience</h2>
+          <div className="w-24 h-1 bg-rose-700 rounded-full"></div>
+        </div>
 
-        <ul className="space-y-8">
+        <motion.div
+          initial="hidden"
+          animate={hasMounted ? "visible" : "hidden"}
+          variants={containerAnimation}
+          className="space-y-12"
+        >
           {experiences.map((experience, index) => (
-            <motion.li
+            <motion.div
               key={index}
               variants={itemAnimation}
-              className="relative flex flex-col mb-8"
+              className="backdrop-blur-sm rounded-xl border border-gray-200 overflow-hidden shadow-lg"
             >
-              {/* Institution */}
-              <h3 className="font-semibold text-gray-900 text-2xl mb-4">{experience.institution}</h3>
-
-              {/* Roles */}
-              <div className="space-y-6">
-                {experience.roles.map((role, idx) => (
-                  <div key={idx} className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-all duration-300">
-                    <h4 className="text-xl font-medium text-gray-800">{role.title}</h4>
-                    <ul className="text-sm text-gray-600 mt-2 list-inside">
-                      {role.courses && role.courses.map((course, i) => (
-                        <li key={i}>- {course}</li>
-                      ))}
-                      {role.semesters && role.semesters.map((semester, i) => (
-                        <li key={i}>- {semester}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              {/* Institution Header */}
+              <div className="bg-white/80 border-b border-gray-100 px-8 py-5">
+                <h3 className="text-2xl font-semibold text-gray-800">{experience.institution}</h3>
               </div>
 
-              {/* Student Feedback */}
-              {experience.feedback && (
-                <div className="bg-white mt-6 p-6 rounded-lg shadow-lg">
-                  <h4 className="font-medium text-gray-800 text-lg">Student Feedback:</h4>
-                  <ul className="text-sm text-gray-600 space-y-4">
-                    {experience.feedback.map((feedback, i) => (
-                      <li key={i} className="italic">"{feedback}"</li>
-                    ))}
-                  </ul>
+              {/* Content Section */}
+              <div className="bg-white/60 p-8">
+                <div className="space-y-6">
+                  {experience.roles.map((role, idx) => (
+                    <div key={idx} className="rounded-lg">
+                      <h4 className="text-lg font-medium text-rose-700 mb-3">{role.title}</h4>
+                      <ul className="space-y-2 ml-5">
+                        {role.courses && role.courses.map((course, i) => (
+                          <li key={i} className="text-gray-700 flex items-start">
+                            <span className="inline-block w-2 h-2 rounded-full bg-rose-400 mt-2 mr-3 flex-shrink-0"></span>
+                            <span>{course}</span>
+                          </li>
+                        ))}
+                        {role.semesters && role.semesters.map((semester, i) => (
+                          <li key={i} className="text-gray-700 flex items-start">
+                            <span className="inline-block w-2 h-2 rounded-full bg-rose-400 mt-2 mr-3 flex-shrink-0"></span>
+                            <span>{semester}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </motion.li>
+
+                {/* Student Feedback Section */}
+                {experience.feedback && (
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <h4 className="text-lg font-medium text-gray-800 mb-4">Student Feedback</h4>
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      {experience.feedback.map((feedback, i) => (
+                        <div 
+                          key={i} 
+                          className="bg-white border border-rose-100 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
+                        >
+                          <p className="text-gray-600 italic text-sm leading-relaxed">"{feedback}"</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
           ))}
-        </ul>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

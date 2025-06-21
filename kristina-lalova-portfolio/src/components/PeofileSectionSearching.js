@@ -1,3 +1,16 @@
+
+
+
+
+
+
+
+// This is a backup for the feature where the user is searching for job opportunities.
+// It includes a typing animation for the text and buttons to view resume and explore research.
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ResearchInterests from './ResearchInterests';
@@ -6,9 +19,7 @@ const ProfileSection = ({ isLoaded }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [startTyping, setStartTyping] = useState(false);
   
-  // COMMENTED OUT - Job seeking text - uncomment to bring back
-  // const fullText = "Currently seeking opportunities in finance, data science, data analytics, research engineering, and related fields where I can apply my analytical expertise and research experience.";
-  const fullText = ""; // Empty text so typing animation doesn't run
+  const fullText = "Currently seeking opportunities in finance, data science, data analytics, research engineering, and related fields where I can apply my analytical expertise and research experience.";
   
   useEffect(() => {
     if (isLoaded) {
@@ -68,8 +79,8 @@ const ProfileSection = ({ isLoaded }) => {
             
             {/* Text bubble and buttons - Desktop only */}
             <div className={`absolute top-full mt-16 w-80 ${isLoaded ? 'animate-fadeInUp delay-500' : 'opacity-0'}`}>
-              {/* COMMENTED OUT - Text bubble with typing animation - uncomment to bring back */}
-              {/* <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-md border border-gray-200 mb-4 h-32">
+              {/* Text bubble with typing animation */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-md border border-gray-200 mb-4 h-32">
                 <p className="text-gray-700 text-sm">
                   {displayedText}
                   <span className={startTyping ? "inline-block w-1 h-4 bg-rose-500 ml-0.5 animate-blink" : "hidden"} 
@@ -81,7 +92,7 @@ const ProfileSection = ({ isLoaded }) => {
                         }}>
                   </span>
                 </p>
-              </div> */}
+              </div>
               
               {/* Buttons - Desktop version navigates to pages */}
               <div className="flex flex-col gap-2">
@@ -128,8 +139,9 @@ const ProfileSection = ({ isLoaded }) => {
             </div>
           </div>
           
-          {/* COMMENTED OUT - Mobile version of text bubble and buttons - uncomment to bring back */}
-          {/* <div className={`lg:hidden w-full max-w-md mx-auto mb-8 ${isLoaded ? 'animate-fadeInUp delay-300' : 'opacity-0'}`}>
+          {/* Mobile version of text bubble and buttons in separate container */}
+          <div className={`lg:hidden w-full max-w-md mx-auto mb-8 ${isLoaded ? 'animate-fadeInUp delay-300' : 'opacity-0'}`}>
+            {/* Fixed height text bubble */}
             <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-md border border-gray-200 mb-4" style={{ height: '110px' }}>
               <p className="text-gray-700 text-sm text-center">
                 {displayedText}
@@ -144,6 +156,7 @@ const ProfileSection = ({ isLoaded }) => {
               </p>
             </div>
             
+            {/* Mobile buttons: Download Resume and Scroll to Research */}
             <div className="flex gap-2">
               <button 
                 onClick={downloadResume}
@@ -161,7 +174,7 @@ const ProfileSection = ({ isLoaded }) => {
                 Explore Research
               </button>
             </div>
-          </div> */}
+          </div>
 
           {/* Bio Section */}
           <div className={`flex flex-col space-y-8 text-center lg:text-left lg:max-w-2xl ${

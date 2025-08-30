@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
             <h2 className="text-2xl font-bold text-gray-900">Dr. Kristina Lalova</h2>
-            <p className="text-gray-600 mt-2">Fixed-Term Assistant Professor of Finance</p>
-            <p className="text-gray-600">Eli Broad College of Business, Michigan State University</p>
+            <p className="text-gray-600 mt-2">Visiting Professor of Finance</p>
+            <p className="text-gray-600">Ramapo College of New Jersey, Anisfield School of Business</p>
           </div>
           <div className="flex gap-8">
             <a href="mailto:lalovakr@msu.edu" className="text-rose-700 hover:text-rose-800 transition-colors">Email</a>

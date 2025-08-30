@@ -175,7 +175,7 @@ const ProfileSection = ({ isLoaded }) => {
               <h1 className="text-5xl font-bold text-gray-900 mb-4 lg:hidden">About Me</h1>
               
               <h2 className="text-2xl sm:text-3xl text-rose-700 font-light">
-                Finance Ph.D. and Assistant Professor at Michigan State University's Eli Broad College of Business.
+                Finance Ph.D. and Professor at Ramapo College of New Jersey's Anisfield School of Business
               </h2>
             </div>
             <div className="w-32 h-2 bg-rose-700 rounded-full mx-auto lg:mx-0"></div>
@@ -188,7 +188,7 @@ const ProfileSection = ({ isLoaded }) => {
                 across different sectors, including specialized domains like European soccer.
               </p>
               <p className="text-xl text-gray-700 leading-relaxed">
-                Before joining Michigan State University in 2023, I earned my Ph.D. in Finance from
+                Before joining Ramapo, I taught at Michigan State University, before MSU, I earned my Ph.D. in Finance from
                 the University of Connecticut, where I developed novel analytical frameworks for
                 understanding labor-finance interactions. My academic journey began at Drexel
                 University, where I graduated with a B.S.B.A. in Finance and Accounting as part of

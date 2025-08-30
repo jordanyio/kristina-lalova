@@ -12,6 +12,18 @@ const TeachingExperience = ({ isLoaded }) => {
 
   const experiences = [
     {
+      institution: "Ramapo College of New Jersey",
+      roles: [
+        {
+          title: "Visiting Assistant Finance Professor",
+          courses: [
+            "Corporate Finance (1)",
+            "Corporate Finance (2)"
+          ],
+        }
+      ],
+    },
+    {
       institution: "Michigan State University",
       roles: [
         {
